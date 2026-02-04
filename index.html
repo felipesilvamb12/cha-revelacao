@@ -1,0 +1,29 @@
+<script>
+  const URL = "https://script.google.com/macros/s/AKfycbxbIEBGyWtKH4BejWzgASynWmY61eHRzTWVXPgzpSC3m3Z9R8vC7mRMt__aXk8Y_J2B/exec";
+
+  const form = document.getElementById("form");
+  const msg = document.getElementById("msg");
+
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const formData = new FormData();
+    formData.append("nome", document.getElementById("nome").value);
+    formData.append("quantidade", document.getElementById("quantidade").value);
+    formData.append("presenca", document.getElementById("presenca").value);
+
+    fetch(URL, {
+      method: "POST",
+      body: formData
+    })
+    .then(() => {
+      msg.innerText = "Confirmação enviada com sucesso 💖💙";
+      msg.style.color = "green";
+      form.reset();
+    })
+    .catch(() => {
+      msg.innerText = "Erro ao enviar 😢";
+      msg.style.color = "red";
+    });
+  });
+</script>
