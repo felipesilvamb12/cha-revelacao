@@ -1,29 +1,108 @@
-<script>
-  const URL = "https://script.google.com/macros/s/AKfycbxbIEBGyWtKH4BejWzgASynWmY61eHRzTWVXPgzpSC3m3Z9R8vC7mRMt__aXk8Y_J2B/exec";
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Chá Revelação 💙💖</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  const form = document.getElementById("form");
-  const msg = document.getElementById("msg");
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #9fd3ff, #ffb6c1);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+    }
 
-  form.addEventListener("submit", function(e) {
-    e.preventDefault();
+    .card {
+      background: #fff;
+      padding: 25px;
+      border-radius: 15px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      text-align: center;
+    }
 
-    const formData = new FormData();
-    formData.append("nome", document.getElementById("nome").value);
-    formData.append("quantidade", document.getElementById("quantidade").value);
-    formData.append("presenca", document.getElementById("presenca").value);
+    input, select, button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
 
-    fetch(URL, {
-      method: "POST",
-      body: formData
-    })
-    .then(() => {
-      msg.innerText = "Confirmação enviada com sucesso 💖💙";
-      msg.style.color = "green";
-      form.reset();
-    })
-    .catch(() => {
-      msg.innerText = "Erro ao enviar 😢";
-      msg.style.color = "red";
+    button {
+      background: #ff7aa2;
+      color: white;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #ff5f8f;
+    }
+
+    .msg {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+    <h1>🎉 Chá Revelação 🎉</h1>
+
+    <form id="form">
+      <input type="text" id="nome" placeholder="Seu nome" required>
+      <input type="number" id="quantidade" min="1" placeholder="Quantas pessoas?" required>
+
+      <select id="presenca" required>
+        <option value="">Confirma presença?</option>
+        <option value="Sim">Sim 🎉</option>
+        <option value="Não">Não 😢</option>
+      </select>
+
+      <button type="submit">Confirmar Presença</button>
+    </form>
+
+    <div class="msg" id="msg"></div>
+  </div>
+
+  <script>
+    const URL = "https://script.google.com/macros/s/AKfycbxbIEBGyWtKH4BejWzgASynWmY61eHRzTWVXPgzpSC3m3Z9R8vC7mRMt__aXk8Y_J2B/exec";
+
+    const form = document.getElementById("form");
+    const msg = document.getElementById("msg");
+
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const formData = new FormData();
+      formData.append("nome", document.getElementById("nome").value);
+      formData.append("quantidade", document.getElementById("quantidade").value);
+      formData.append("presenca", document.getElementById("presenca").value);
+
+      fetch(URL, {
+        method: "POST",
+        body: formData
+      })
+      .then(() => {
+        msg.innerText = "Confirmação enviada com sucesso 💖💙";
+        msg.style.color = "green";
+        form.reset();
+      })
+      .catch(() => {
+        msg.innerText = "Erro ao enviar 😢";
+        msg.style.color = "red";
+      });
     });
-  });
-</script>
+  </script>
+
+</body>
+</html>
